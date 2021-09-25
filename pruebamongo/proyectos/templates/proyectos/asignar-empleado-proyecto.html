@@ -1,0 +1,5 @@
+<form action="" method="post">{% csrf_token %}
+{{ object.proyecto }}
+{{form.as_p}}
+<button type="submit">Asignar empleados al proyecto</button>
+</form>

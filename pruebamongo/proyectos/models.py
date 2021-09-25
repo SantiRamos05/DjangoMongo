@@ -28,5 +28,10 @@ class ProyectoEmpleados(models.Model):
     proyecto = models.OneToOneField(Proyectos, on_delete=models.DO_NOTHING, verbose_name='Proyecto')
     empleados = models.ArrayReferenceField(to = User, null=True, blank=True, related_name="empleados")
 
+
+
 class HistoriasUsuario(models.Model):
-    pass
+    identificacionhistoriausuario = models.CharField(verbose_name="Identificacion de Historia de usuario", max_length=150, unique=True)
+    descripcionhistoriausuario = models.CharField(verbose_name="Historia de usuario", max_length=500)
+    documentacion = models.FileField(upload_to = "Uploaded Files/")
+    empleados = models.ArrayReferenceField(to = User, null=True, blank=True, related_name="husuario")

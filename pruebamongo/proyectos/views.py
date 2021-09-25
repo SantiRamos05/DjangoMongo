@@ -1,7 +1,9 @@
+from django.urls.base import reverse_lazy
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
 from accounts.models import User
 from django.shortcuts import redirect, render
-from .forms import CrearProyectos
+from .forms import AsignarEmpleadosProyecto, CrearProyectos
 from .models import Proyectos, ProyectoEmpleados
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,8 +16,7 @@ class CrearProyectos(LoginRequiredMixin, CreateView):
     model = Proyectos
     template_name = 'proyectos/crear-proyectos.html'
 
-    #toca arreglar esto
-    success_url = 'Home'
+    success_url = reverse_lazy('Home')
 
     def form_valid(self, form):
         promotor = form.cleaned_data.get('promotor')
@@ -46,5 +47,16 @@ class ListarEmpleadosProyecto(LoginRequiredMixin, DetailView):
         id = kwargs['object']
         context['empleados']= ProyectoEmpleados.objects.filter(proyecto = id.id)
         return context
-    
+
+class AsignarEmpleadoProyectoView(LoginRequiredMixin, UpdateView):
+    form_class = AsignarEmpleadosProyecto
+    model = ProyectoEmpleados
+    template_name = 'proyectos/asignar-empleado-proyecto.html'
+    success_url = reverse_lazy('Home')
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated: 
+            if request.user.groups.id == 3 or request.user.groups.id == 2:
+                return super().dispatch(request, *args, **kwargs)
+        return redirect('Home')
     
