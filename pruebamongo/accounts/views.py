@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.urls.base import reverse
 from django.views.generic import CreateView
 from .models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -8,6 +9,7 @@ class CrearUsuario(LoginRequiredMixin, CreateView):
     model = User
     form_class =  CrearEmpleado
     template_name = 'accounts/crear-empleado.html'
-    success_url = 'crear-empleado'
+    #toca arreglar esto
+    success_url =  'Home'
 
 
