@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'pruebamongo',
+    'proyectos',
 ]
 AUTH_USER_MODEL = 'accounts.User'
 MIDDLEWARE = [
