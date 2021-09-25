@@ -1,0 +1,11 @@
+{% include 'accounts/nav.html' %}
+{% for empleado in empleados %}
+<h3>Nombre del proyecto</h3>
+{{empleado.proyecto}}
+<h3>Empleados del proyecto</h3>
+
+{% for i in empleado.empleados.all %}
+{{i}}
+{% endfor %} 
+
+{% endfor %}

@@ -1,8 +1,12 @@
 {% load static %}
 <nav>
     <ul>
+        {% if request.user.groups.id == 3 %}
         <li><a href="{% url 'account:crear-empleado' %}">crear usuario</a></li>
-        <li><a href="">Login</a></li>
         <li><a href="{% url 'proyectos:crear-proyecto' %}">Crear Proyecto</a></li>
+        {% endif %}
+        <li><a href="">Login</a></li>
+        <li><a href="{% url 'proyectos:listar-proyectos' %}">Listar Proyectos</a></li>
+        {% comment %} <li><a href="{% url 'proyectos:listarempleados' %}">Listar Empleados</a></li> {% endcomment %}
     </ul>
 </nav>

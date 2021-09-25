@@ -1,5 +1,4 @@
-from django.db import models
-from django.db.models.base import Model
+from djongo import models
 from accounts.models import User
 # Create your models here.
 
@@ -24,4 +23,10 @@ class Proyectos(models.Model):
 
     def __str__(self):
         return self.nombreclave
-    
+
+class ProyectoEmpleados(models.Model):
+    proyecto = models.OneToOneField(Proyectos, on_delete=models.DO_NOTHING, verbose_name='Proyecto')
+    empleados = models.ArrayReferenceField(to = User, null=True, blank=True, related_name="empleados")
+
+class HistoriasUsuario(models.Model):
+    pass

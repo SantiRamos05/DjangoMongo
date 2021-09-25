@@ -1,0 +1,17 @@
+{% include 'accounts/nav.html' %}
+{% for proyectos in object_list %}
+    <h3>Nombre clave</h3>
+    {{proyectos.nombreclave}}
+    <h3>Nombre Promotor</h3>
+    {{proyectos.promotor}}
+    <h3>Nombre denominacion Comercial</h3>
+    {{proyectos.denominacioncomercial}}
+    <h3>Nombre Estado del proyecto</h3>
+    {{proyectos.estadoactual}}
+    <h3>Nombre Fecha de Inicio</h3>
+    {{proyectos.fechainicio}}
+    <h3>Nombre Fecha Final</h3>
+    {{proyectos.fechafinalizacion}}
+    <h3>Ver Empleados</h3>
+    <a href="{% url 'proyectos:listar-empleados' proyectos.id %}">Ver empleados</a>
+{% endfor %}
