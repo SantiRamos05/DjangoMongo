@@ -1,18 +1,53 @@
+{% extends 'pruebamongo/base.html' %}
 {% include 'accounts/nav.html' %}
-{% for proyectos in object_list %}
-    <h3>Nombre clave</h3>
-    {{proyectos.nombreclave}}
-    <h3>Nombre Promotor</h3>
-    {{proyectos.promotor}}
-    <h3>Nombre denominacion Comercial</h3>
-    {{proyectos.denominacioncomercial}}
-    <h3>Nombre Estado del proyecto</h3>
-    {{proyectos.estadoactual}}
-    <h3>Nombre Fecha de Inicio</h3>
-    {{proyectos.fechainicio}}
-    <h3>Nombre Fecha Final</h3>
-    {{proyectos.fechafinalizacion}}
-    <h3>Ver Empleados</h3>
-    <a href="{% url 'proyectos:listar-empleados' proyectos.id %}">Ver empleados</a>
-    <a href="{% url 'proyectos:asignar-empleado' proyectos.proyectoempleados.id %}">Asignar empleados</a>
-{% endfor %}
+{% block content %}
+
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">LISTA DE PROYECTOS</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 text-nowrap">
+                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                            </div>
+                        </div>
+                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                            <table class="table my-0" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre Clave</th>
+                                        <th>Nombre Promotor</th>
+                                        <th>Denominacion Comercial</th>
+                                        <th>Estado del proyecto</th>
+                                        <th>Fecha de Inicio</th>
+                                        <th>Fecha de Final</th>
+                                        <th>Ver Empleados</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for proyectos in object_list %}
+                                    <tr>
+                                        <td>{{proyectos.nombreclave}}</td>
+                                        <td>{{proyectos.promotor}}</td>
+                                        <td>{{proyectos.denominacioncomercial}}</td>
+                                        <td>{{proyectos.estadoactual}}</td>
+                                        <td>{{proyectos.fechainicio}}</td>
+                                        <td>{{proyectos.fechafinalizacion}}</td>
+                                        <td><a href="{% url 'proyectos:listar-empleados' proyectos.id %}">Ver empleados, </a>
+                                        {% if request.user.groups.id == 2 %}
+                                        <a href="{% url 'proyectos:asignar-empleado' proyectos.proyectoempleados.id %}">Asignar empleados, </a>
+                                        <a href="{% url 'proyectos:crear-historia' proyectos.id %}">Crer Tarea</a></td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                                   
+                                </tbody>
+                                
+                            </table>
+                        </div>
+     
+{% endblock %}

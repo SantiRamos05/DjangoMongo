@@ -1,5 +1,18 @@
-<form action="" method="post">{% csrf_token %}
-{{ object.proyecto }}
-{{form.as_p}}
-<button type="submit">Asignar empleados al proyecto</button>
-</form>
+{% extends 'pruebamongo/base.html' %}
+{% block content %}
+
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">ASIGNAR EMPLEADOS A PROYECTOS</p>
+                    </div>
+                    <div class="card-body">
+                        
+                        <form action="" method="post">{% csrf_token %}
+                        <h2>{{ object.proyecto }}</h2>
+                        {{form.as_p}}
+                        <button class="btn btn-primary btn-block text-white btn-user" type="submit">Asignar empleados al proyecto</button>
+                        </form>
+                    </div>
+     
+{% endblock %}
+

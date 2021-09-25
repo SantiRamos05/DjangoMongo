@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import Home
+from .views import Home, Index
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home.as_view(), name='Home'),
+    path('', Home.as_view(), name='Login'),
+    path('home/', Index.as_view(), name='Home'),
     path('', include('accounts.urls', namespace='account')),
     path('', include('proyectos.urls', namespace='proyectos')),
 ]

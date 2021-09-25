@@ -1,6 +1,16 @@
+{% extends 'pruebamongo/base.html' %}
 {% load static %}
 {% include 'accounts/nav.html' %}
-<form action="" method="post">{% csrf_token %}
-{{form.as_p}}
-<button type="submit">Crear Proyecto</button>
-</form>
+{% block content %}
+<div class="card shadow">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">CREAR PROYECTO</p>
+                    </div>
+                    <div class="card-body">
+                        <form style="width: 549px;margin-left: 50px;" action="" method="post">{% csrf_token %}
+                        {{form.as_p}}
+                        <button type="submit" class="btn btn-primary btn-block text-white btn-user">Crear Proyecto</button>
+                        </form>
+                    </div>
+</div>
+{% endblock content %}

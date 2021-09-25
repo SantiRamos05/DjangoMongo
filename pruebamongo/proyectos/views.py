@@ -1,10 +1,11 @@
+import proyectos
 from django.urls.base import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 from accounts.models import User
-from django.shortcuts import redirect, render
-from .forms import AsignarEmpleadosProyecto, CrearProyectos
-from .models import Proyectos, ProyectoEmpleados
+from django.shortcuts import get_object_or_404, redirect, render
+from .forms import AsignarEmpleadosProyecto, CrearProyectos, HistoriasUsuarioForm
+from .models import HistoriasUsuario, Proyectos, ProyectoEmpleados
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
@@ -22,8 +23,6 @@ class CrearProyectos(LoginRequiredMixin, CreateView):
         promotor = form.cleaned_data.get('promotor')
         grupo_promotor = Group.objects.get(name = "Promotor")
         usuario = User.objects.get(username = promotor)
-        print('Este es el usuario', usuario)
-        print('Este es el grupo', grupo_promotor)
         usuario.groups = grupo_promotor
         usuario.save()
         return super().form_valid(form)
@@ -59,4 +58,25 @@ class AsignarEmpleadoProyectoView(LoginRequiredMixin, UpdateView):
             if request.user.groups.id == 3 or request.user.groups.id == 2:
                 return super().dispatch(request, *args, **kwargs)
         return redirect('Home')
+
+class CrearHistoriaUsuario(LoginRequiredMixin, CreateView):
+    model = HistoriasUsuario
+    form_class = HistoriasUsuarioForm
+    template_name = 'proyectos/crear-historia-usuario.html'
+    success_url = reverse_lazy('Home')
+
+    def get(self, request, *args, **kwargs):
+        profile = Proyectos.objects.get(id =kwargs['pk'])
+        context={
+            'proyecto':profile,
+            'form':HistoriasUsuarioForm
+        }
+        return render(request, 'proyectos/crear-historia-usuario.html', context)
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated: 
+            if request.user.groups.id == 2:
+                return super().dispatch(request, *args, **kwargs)
+        return redirect('Home')
     
+

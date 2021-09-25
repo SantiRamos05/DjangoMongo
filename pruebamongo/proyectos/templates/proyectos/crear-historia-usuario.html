@@ -1,0 +1,24 @@
+{% extends 'pruebamongo/base.html' %}
+{% include 'accounts/nav.html' %}
+{% block content %}
+<div class="card shadow">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">CREAR TAREA</p>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post">{% csrf_token %}
+                        <h3 class="mb-3 font-weight-light">Proyecto: {{ proyecto }}</h3>
+                        
+                        <h5>Identificacacion de la historia de Usuario</h5>
+                        {{form.identificacionhistoriausuario}}
+                        <h5>Descripcion de la historia de Usuario</h5>
+                        {{form.descripcionhistoriausuario}}
+                        <h5>Documentacion</h5>
+                        {{form.documentacion}}
+                        <br>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-block text-white btn-user">Crear Historia de Usuario</button>
+                        </form>
+                    </div>
+</div>
+{% endblock content %}

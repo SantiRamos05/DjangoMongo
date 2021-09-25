@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Proyectos, ProyectoEmpleados
+from .models import HistoriasUsuario, Proyectos, ProyectoEmpleados
 # Register your models here.
 class AdminProyectos(admin.ModelAdmin):
     list_display = ['nombreclave', 'promotor', 'denominacioncomercial', 'estadoactual']
@@ -7,3 +7,9 @@ class AdminProyectos(admin.ModelAdmin):
 admin.site.register(Proyectos, AdminProyectos)
 
 admin.site.register(ProyectoEmpleados)
+
+admin.site.register(HistoriasUsuario)
+
+
+
+

@@ -1,14 +1,14 @@
 from django import forms
-from django.forms import widgets
-
-from .models import Proyectos, ProyectoEmpleados
+from .models import Proyectos, ProyectoEmpleados, HistoriasUsuario
 
 class CrearProyectos(forms.ModelForm):
-    fechainicio = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'2021-09-30'}))
-    fechafinalizacion = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'2021-09-30'}))
+    nombreclave = forms.CharField(widget=forms.TextInput(attrs={'class':'border rounded-0 form-control'}))
+    fechainicio = forms.CharField(widget=forms.TextInput(attrs={'class':'border rounded-0 form-control','placeholder':'2021-09-30'}))
+    fechafinalizacion = forms.CharField(widget=forms.TextInput(attrs={'class':'border rounded-0 form-control','placeholder':'2021-09-30'}))
+    
     class Meta:
         model = Proyectos
-        fields = ['nombreclave', 'promotor', 'denominacioncomercial', 'fechainicio', 'fechafinalizacion']
+        fields = ['nombreclave','fechainicio', 'fechafinalizacion', 'promotor', 'denominacioncomercial' ]
 
 class AsignarEmpleadosProyecto(forms.ModelForm):
 
@@ -18,3 +18,11 @@ class AsignarEmpleadosProyecto(forms.ModelForm):
         widgets = {
             'empleados':forms.CheckboxSelectMultiple()
         }
+
+class HistoriasUsuarioForm(forms.ModelForm):
+    identificacionhistoriausuario = forms.CharField(widget=forms.NumberInput(attrs={'class':'border rounded-0 form-control'}))
+    descripcionhistoriausuario = forms.CharField(widget=forms.Textarea(attrs={'class':'border rounded-0 form-control'}))
+    
+    class Meta:
+        model = HistoriasUsuario
+        fields = ['identificacionhistoriausuario', 'descripcionhistoriausuario', 'documentacion']

@@ -1,6 +1,17 @@
+{% extends 'pruebamongo/base.html' %}
 {% load static %}
-{% include 'accounts/nav.html' %}
-<form action="" method="post">{% csrf_token %}
-{{form.as_p}}
-<button type="submit">Crear Empleado</button>
-</form>
+{% block content %}
+
+<div class="container-fluid">
+                <form style="width: 549px;margin-left: 50px;" method="post">{% csrf_token %}
+                    <div class="col-md-8" style="width: 512px;padding-right: -1px;padding-left: 0px;">
+                        <h1 style="font-size: 20px;"><i class="far fa-registered" style="margin-right: 8px;color: #00baff;"></i>REGISTRAR EMPLEADO</h1>
+                        <hr>
+                        <div class="form-group">
+                        
+                       {{form.as_p}}
+                       <button type="submit" class="btn btn-primary btn-block text-white btn-user">Crear Empleado</button>
+                    </div>
+                </form>
+</div>
+{% endblock content %}

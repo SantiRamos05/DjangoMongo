@@ -12,6 +12,11 @@ ESTADO =(
     ('Finalizado', 'Finalizado')
 )
 
+class HistoriasUsuario(models.Model):
+    identificacionhistoriausuario = models.CharField(verbose_name="Identificacion de Historia de usuario", max_length=150, unique=True)
+    descripcionhistoriausuario = models.TextField(verbose_name="Descripcion", max_length=500)
+    documentacion = models.FileField(upload_to = "Uploaded Files/", null=True, blank=True)
+    empleados = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
 class Proyectos(models.Model):
     nombreclave = models.CharField(verbose_name="Nombre clave del proyecto", max_length=150, unique=True)
@@ -20,6 +25,7 @@ class Proyectos(models.Model):
     fechainicio = models.DateField(verbose_name="Fecha de inicio")
     fechafinalizacion = models.DateField(verbose_name="Fecha de final")
     estadoactual = models.CharField(max_length=150, choices=ESTADO, default="NoIniciado")
+    tareas = models.ArrayReferenceField(to = HistoriasUsuario, null=True, blank=True, related_name="Tusuario") 
 
     def __str__(self):
         return self.nombreclave
@@ -30,8 +36,7 @@ class ProyectoEmpleados(models.Model):
 
 
 
-class HistoriasUsuario(models.Model):
-    identificacionhistoriausuario = models.CharField(verbose_name="Identificacion de Historia de usuario", max_length=150, unique=True)
-    descripcionhistoriausuario = models.CharField(verbose_name="Historia de usuario", max_length=500)
-    documentacion = models.FileField(upload_to = "Uploaded Files/")
-    empleados = models.ArrayReferenceField(to = User, null=True, blank=True, related_name="husuario")
+
+
+
+    

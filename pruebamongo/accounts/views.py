@@ -22,6 +22,10 @@ class CrearUsuario(LoginRequiredMixin, CreateView):
         return redirect('Home')
     
 
+class ListEmpleados(LoginRequiredMixin, ListView):
+    model = User
+    template_name = 'accounts/listar-empleados.html'
+    
 
 class EliminarEmpleados(LoginRequiredMixin, DeleteView):
     pass

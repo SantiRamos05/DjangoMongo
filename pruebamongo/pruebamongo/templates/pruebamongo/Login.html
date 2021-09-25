@@ -1,0 +1,27 @@
+{% include 'pruebamongo/head.html' %}
+<body class="bg-gradient-primary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-0 col-lg-8 col-xl-5">
+                <div class="card my-4">
+                        <div>
+                            <div>
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Ingresar</h4>
+                                    </div>
+                                    <form class="user" method="POST">
+                                        <div class="form-group"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingresa Usuario" name="usuario"></div>
+                                        <div class="form-group"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Contraseña" name="password"></div>
+                                        <div class="form-group">
+                                        </div><button class="btn btn-primary btn-block text-white btn-user" type="submit">Iniciar sesion</button>
+                                    </form>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% include 'pruebamongo/script.html' %}
+</body>
