@@ -101,7 +101,7 @@ class ListarTareasProyecto(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         proyecto = Proyectos.objects.get(id = self.kwargs['pk'])
-        context['tareas'] = HistoriasUsuario.objects.filter(proyecto = proyecto.id)
+        context['tareas'] = HistoriasUsuario.objects.filter(proyecto = proyecto.id) 
         return context
 
 
@@ -118,20 +118,15 @@ class AsignarEmpleadoTarea(LoginRequiredMixin, UpdateView):
         initial['empleados'] = user
         return initial
     
-
-
-    
-    
-"""     def form_valid(self, form):
-        empleado = User.objects.get(username = self.request.user)
-        print(empleado)
-        historia = HistoriasUsuario.objects.filter(empleados = empleado)
-
-
-        #usuario.groups = grupo_promotor
-        #usuario.save()
-        return super().form_valid(form) """
-    
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated: 
+            try: 
+                historia = HistoriasUsuario.objects.get(id = kwargs['pk'])
+            except:
+                historia = None
+            if historia.empleados == None:
+                    return super().dispatch(request, *args, **kwargs)
+        return redirect('Home')
 
     
 
