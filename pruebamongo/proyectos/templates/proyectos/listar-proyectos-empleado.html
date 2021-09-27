@@ -4,7 +4,7 @@
 
 <div class="card shadow">
                     <div class="card-header py-3">
-                        <p class="text-primary m-0 font-weight-bold">LISTA DE EMPLEADOS POR PROYECTOS</p>
+                        <p class="text-primary m-0 font-weight-bold">LISTA PROYECTOS REGISTRADOS EN EL EMPLEADO</p>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -19,19 +19,21 @@
                             <table class="table my-0" id="dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Nombre del proyecto</th>
-                                        <th>Empleados del proyecto</th>
-                                        
+                                        <th>Proyectos</th>
+                                        <th>Promotor</th>
+                                        <th>Denominacion Comercial</th>
+                                        <th>Estado del proyecto</th>
+                                        <th>Ver Tareas</th> 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {% for empleado in empleados %}
+                                {% for proyecto in proyectos %}
                                     <tr>
-                                        <td>{{empleado.proyecto}}</td>
-                                        <td>{% for i in empleado.empleados.all %}
-                                        {{i}}
-                                        {% endfor %} </td>
-                                        
+                                        <td>{{proyecto.nombreclave}}</td>
+                                        <td>{{proyecto.promotor}}</td>
+                                        <td>{{proyecto.denominacioncomercial}}</td>
+                                        <td>{{proyecto.estadoactual}}</td>
+                                        <td><a class="btn btn-primary btn-block text-white btn-user" href="{% url 'proyectos:listar-mis-tareas' proyecto.id %}">Tareas</a></td>
                                     </tr>
                                 {% endfor %}
                                    

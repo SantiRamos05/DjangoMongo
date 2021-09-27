@@ -1,0 +1,31 @@
+{% extends 'pruebamongo/base.html' %}
+{% include 'accounts/nav.html' %}
+{% block content %}
+
+<div class="card shadow">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">LISTA PROYECTOS REGISTRADOS EN EL EMPLEADO</p>
+                    </div>
+                    <div class="card-body">
+                       <form action="" method="post">
+                       {% csrf_token %}
+                        <label for="">Identificacion de la Tarea</label>
+                       {{form.identificacionhistoriausuario}}
+                        <label for="">Descripcion de la Tarea</label>
+                       {{form.descripcionhistoriausuario}}
+                        <label for="">Fecha de inicio esperada</label>
+                       {{form.fechainicioesperado}}
+                        <label for="">Fecha de Inicio Real</label>
+                       {{form.fechainicioreal}}
+                        <label for="">Fecha de Duracion esperada</label>
+                       {{form.duracionesperada}}
+                        <label for="">Fecha de Duracion real</label>
+                       {{form.duracionreal}}
+                       {{form.empleados}}
+                       <br>
+                       <button type="submit" class="btn btn-primary btn-block text-white btn-user">Agregarme a esta Tarea</button>
+                       </form>
+                    </div>
+
+
+ {% endblock %}

@@ -9,7 +9,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                                <label>Show&nbsp;
+                                <select class="form-control form-control-sm custom-select custom-select-sm">
+                                <option value="10" selected="">10</option><option value="25">25</option>
+                                <option value="50">50</option><option value="100">100</option>
+                                </select>&nbsp;</label></div>
                             </div>
                             <div class="col-md-6">
                                 <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
@@ -40,12 +45,24 @@
                                         <td><a href="{% url 'proyectos:listar-empleados' proyectos.id %}">Ver empleados, </a>
                                         {% if request.user.groups.id == 2 %}
                                         <a href="{% url 'proyectos:asignar-empleado' proyectos.proyectoempleados.id %}">Asignar empleados, </a>
-                                        <a href="{% url 'proyectos:crear-historia' proyectos.id %}">Crer Tarea</a></td>
+                                        </td>
                                         {% endif %}
                                     </tr>
                                 {% endfor %}
                                    
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                         <th><strong>-</strong></th>
+                                         <th><strong>-</strong></th>
+                                         <th><strong>-</strong></th>
+                                         <th><strong>-</strong></th>
+                                         <th><strong>-</strong></th>
+                                         <th><strong>-</strong></th>
+                                         <th><strong><a class="btn btn-primary btn-block text-white btn-user" href="{% url 'proyectos:crear-historia' %}">Crer Tarea</a></strong></th>
+                                       
+                                    </tr>
+                                </tfoot>
                                 
                             </table>
                         </div>

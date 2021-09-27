@@ -7,11 +7,15 @@
                     </div>
                     <div class="card-body">
                         <form action="" method="post">{% csrf_token %}
-                        <h3 class="mb-3 font-weight-light">Proyecto: {{ proyecto }}</h3>
-                        
-                        <h5>Identificacacion de la historia de Usuario</h5>
+                        {% comment %} <h3 class="mb-3 font-weight-light">Proyecto: {{ proyecto }}</h3> {% endcomment %}
+                        <h5>Proyecto al que se le asigana la tarea</h5>
+                        {{form.proyecto.errors}}
+                        {{form.proyecto}}
+                        <h5>Codigo de la historia de usuario</h5>
+                        {{form.identificacionhistoriausuario.errors}}
                         {{form.identificacionhistoriausuario}}
                         <h5>Descripcion de la historia de Usuario</h5>
+                        {{form.descripcionhistoriausuario.errors}}
                         {{form.descripcionhistoriausuario}}
                         <h5>Documentacion</h5>
                         {{form.documentacion}}

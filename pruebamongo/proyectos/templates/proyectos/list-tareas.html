@@ -4,7 +4,7 @@
 
 <div class="card shadow">
                     <div class="card-header py-3">
-                        <p class="text-primary m-0 font-weight-bold">LISTA DE EMPLEADOS POR PROYECTOS</p>
+                        <p class="text-primary m-0 font-weight-bold">LISTA TAREAS</p>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -19,19 +19,19 @@
                             <table class="table my-0" id="dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Nombre del proyecto</th>
-                                        <th>Empleados del proyecto</th>
-                                        
+                                        <th>Tareas</th>
+                                        <th>Identificacion</th>
+    
+                                        <th>Registrar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {% for empleado in empleados %}
+                                {% for tar in tareas %}
                                     <tr>
-                                        <td>{{empleado.proyecto}}</td>
-                                        <td>{% for i in empleado.empleados.all %}
-                                        {{i}}
-                                        {% endfor %} </td>
+                                        <td>{{tar.proyecto}}</td>
+                                        <td>{{tar.identificacionhistoriausuario}}</td>
                                         
+                                        <td><a class="btn btn-primary btn-block text-white btn-user" href="{% url 'accounts:asignar-tarea' tar.id%}">Asignar</a></td>
                                     </tr>
                                 {% endfor %}
                                    
